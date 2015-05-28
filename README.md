@@ -1,5 +1,5 @@
-  # Mailboxer
-  
+# Mailboxer
+
   
   I needed private messaging, found the Mailboxer (https://github.com/mailboxer/mailboxer) very good, but in my system I use Mongoid, this gem was not going to serve me (she makes heavy use of joins and MongoDB does not support this, nor is there need), I realized that to wear the jewelry that I needed to encode, so I decided to put their hands dirty, I mean, in the code and porting it to support Mongoid, so this is a gem Mailboxer supporting Mongoid and only this.
   I intend to keep that gem always compatible with Mailboxer and can add new features.
@@ -37,9 +37,9 @@
   $ rails g mailboxer:views
   ```
   
-  ## Requirements & Settings
+## Requirements & Settings
   
-  ### Emails
+### Emails
   
   We are now adding support for sending emails when a Notification or a Message is sent to one or more recipients. You should modify the mailboxer initializer (/config/initializer/mailboxer.rb) to edit these settings.
   
@@ -63,7 +63,7 @@
   end
   ```
   
-  ### User identities
+### User identities
   
   Users must have an identity defined by a `name` and an `email`. We must ensure that Messageable models have some specific methods. These methods are:
   
@@ -109,7 +109,7 @@
   
   Using default or custom method names, if your model doesn't implement them, Mailboxer will use dummy methods so as to notify you of missing methods rather than crashing.
   
-  ## Preparing your models
+## Preparing your models
   
   In your model:
   
@@ -135,16 +135,16 @@
   end
   ```
   
-  ## Mailboxer API
+## Mailboxer API
   
-  ### How can I send a message?
+### How can I send a message?
   
   ```ruby
   #alfa wants to send a message to beta
   alfa.send_message(beta, "Body", "subject")
   ```
   
-  ### How can I reply a message?
+### How can I reply a message?
   
   ```ruby
   #alfa wants to reply to all in a conversation
@@ -161,7 +161,7 @@
   alfa.reply_to_sender(receipt, "Reply body")
   ```
   
-  ### How can I retrieve my conversations?
+### How can I retrieve my conversations?
   
   ```ruby
   #alfa wants to retrieve all his conversations
@@ -177,7 +177,7 @@
   alfa.mailbox.trash
   ```
   
-  ### How can I delete a message from trash?
+### How can I delete a message from trash?
   
   ```ruby
   #delete conversations forever for one receipt (still in database)
@@ -196,7 +196,7 @@
   alfa.mark_as_deleted conversation
   ```
   
-  ### How can I paginate conversations?
+### How can I paginate conversations?
   
   You can use Kaminari to paginate the conversations as normal. Please, make sure you use the last version as mailboxer uses `select('DISTINCT conversations.*')` which was not respected before Kaminari 0.12.4 according to its changelog. Working corretly on Kaminari 0.13.0.
   
@@ -214,7 +214,7 @@
   conversations = alfa.mailbox.trash.page(params[:page]).per(9)
   ```
   
-  ### How can I read the messages of a conversation?
+### How can I read the messages of a conversation?
   
   As a messageable, what you receive are receipts, which are associated with the message itself. You should retrieve your receipts for the conversation a get the message associated with them.
   
